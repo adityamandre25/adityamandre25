@@ -1,9 +1,17 @@
-name: Update Digital Aquarium
+name: Update Living Digital Aquarium
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Refreshes daily at midnight UTC
-  workflow_dispatch:     # Allows manual trigger via Actions tab
+    - cron: '0 0 * * *' # Daily at midnight UTC
+  workflow_dispatch:     # Manual trigger via GitHub Actions tab
+    inputs:
+      force_rebuild:
+        description: 'Force visual rebuild regardless of PR count changes'
+        required: false
+        type: boolean
+        default: false
+  pull_request:
+    types: [closed]
   push:
     branches:
       - main
@@ -12,7 +20,7 @@ on:
       - '.github/workflows/aquarium.yml'
 
 jobs:
-  refresh-aquarium:
+  evolve-aquarium:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -32,20 +40,30 @@ jobs:
           python -m pip install --upgrade pip
           pip install Pillow numpy
 
-      - name: Generate Digital Aquarium
+      - name: Evolve & Generate Aquarium
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python scripts/generate_aquarium.py --username adityamandre25 --output assets/aquarium.gif
+          FLAGS=""
+          if [ "${{ inputs.force_rebuild }}" = "true" ]; then
+            FLAGS="--force"
+          fi
+          python scripts/generate_aquarium.py \
+            --username adityamandre25 \
+            --token "$GITHUB_TOKEN" \
+            --output assets/aquarium.gif \
+            --state assets/aquarium_state.json \
+            --bg assets/aquarium_background.jpg \
+            $FLAGS
 
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/aquarium.gif
+          git add assets/aquarium.gif assets/aquarium_state.json
           if git diff --staged --quiet; then
-            echo "No changes in aquarium ecosystem."
+            echo "Aquarium ecosystem is already synchronized with GitHub activity."
           else
-            git commit -m "chore(aquarium): refresh digital aquarium ecosystem [skip ci]"
+            git commit -m "chore(aquarium): evolve digital ecosystem state [skip ci]"
             git push
           fi

@@ -3,28 +3,6 @@
 # Hey, I'm Aditya 👋
 ### Developer | Problem Solver
 
-<br />
-
-<!-- ================= DIGITAL AQUARIUM ================= -->
-
-<a href="https://github.com/adityamandre25">
-  <img src="assets/aquarium.gif" width="100%" alt="Aditya's Digital Aquarium" />
-</a>
-
-<sub>*A living, breathing pixel-art aquarium dynamically generated from GitHub activity and milestones.*</sub>
-
-<br />
-<br />
-
-```
-  ┌────────────────────────────────────────────────────────────────────────┐
-  │                           ECOSYSTEM ROSTER                             │
-  ├────────────────────────────────────────────────────────────────────────┤
-  │  ✨ Yamabuki Gold (Rare)  •  🟠 Kohaku  •  🔴 Taisho Sanke  •  🔵 Asagi │
-  │        ⚫ Showa  •  ⚪ Platinum Ogon  •  🐟 Baby Fry Darting           │
-  └────────────────────────────────────────────────────────────────────────┘
-```
-
 </div>
 
 <br />
@@ -98,6 +76,36 @@
 <br />
 <br />
 
+<!-- ================= DIGITAL AQUARIUM (BOTTOM OF README) ================= -->
+
 <div align="center">
-  <sub>Designed with water, pixels, and code 🐠</sub>
+
+### 🐠 Living Digital Aquarium
+
+<a href="https://github.com/adityamandre25">
+  <img src="assets/aquarium.gif" width="100%" alt="Aditya's Evolving Digital Aquarium" />
+</a>
+
+<sub>*A living underwater ecosystem that evolves dynamically with my merged pull request milestones.*</sub>
+
+<br />
+<br />
+
+```
+  ┌────────────────────────────────────────────────────────────────────────┐
+  │                           ECOSYSTEM ROSTER                             │
+  ├────────────────────────────────────────────────────────────────────────┤
+  │  Tier 1 (0–5 PRs)    : Starter Shallows (Neon Tetras & Clownfish)      │
+  │  Tier 2 (6–15 PRs)   : Coral Shallows (Regal Blue Tang + Growth)       │
+  │  Tier 3 (16–30 PRs)  : Azure Haven (Royal Amazonian Discus Unlocked)   │
+  │  Tier 4 (31–50 PRs)  : Abyssal Sanctuary (Altum Angelfish Unlocked)    │
+  │  Tier 5 (51–100 PRs) : Imperial Reef (Golden Arowana & Sparkles)       │
+  │  Tier 6 (100+ PRs)   : Legendary Sovereign Realm (Grand Mature Realm)  │
+  └────────────────────────────────────────────────────────────────────────┘
+```
+
+<sub>Every merged pull request fuels the growth, species diversity, and visual radiance of this world.</sub>
+
+<br />
+
 </div>
