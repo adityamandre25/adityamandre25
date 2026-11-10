@@ -68,6 +68,6 @@
   <img src="assets/aquarium.gif" width="100%" alt="Aditya's Evolving Digital Aquarium" />
 </a>
 
-<sub>A living underwater ecosystem that evolves with my merged pull requests.</sub>
+
 
 </div>
