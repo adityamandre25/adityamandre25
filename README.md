@@ -1,10 +1,8 @@
-<div align="center">
+<a href="https://github.com/adityamandre25">
+  <img src="assets/header.svg" alt="ADITYA MANDRE" height="52" />
+</a>
 
-# Hey, I'm Aditya 👋
-### Developer | Problem Solver
-
-</div>
-
+<br />
 <br />
 
 ### 🌊 About Me
