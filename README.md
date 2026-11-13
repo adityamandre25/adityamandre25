@@ -59,12 +59,6 @@
 <br />
 <br />
 
-<!-- AQUARIUM: KEEP THIS AS THE FINAL SECTION -->
-
-<div align="center">
-
-<a href="https://github.com/adityamandre25">
-  <img src="assets/aquarium.gif" width="100%" alt="Aditya's Evolving Digital Aquarium" />
-</a>
-
-</div>
+<p align="center">
+  <img src="koi/koi.gif" width="256" alt="Aditya's git-koi" />
+</p>
