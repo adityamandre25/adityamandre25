@@ -8,6 +8,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - .github/workflows/koi.yml
 
 permissions:
   contents: write
@@ -18,21 +20,40 @@ jobs:
   koi:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: yalongwastaken/git-koi@v1
+      - name: Checkout profile repository
+        uses: actions/checkout@v4
+
+      - name: Set up Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo build
+        uses: Swatinem/rust-cache@v2
         with:
-          login: adityamandre25
-          body: gold
-          output-dir: koi
+          workspaces: koi-engine
+
+      - name: Checkout custom koi engine (adityamandre25/koi)
+        uses: actions/checkout@v4
+        with:
+          repository: adityamandre25/koi
+          path: koi-engine
+
+      - name: Collect snapshot and render custom koi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd koi-engine
+          cargo run --release -- collect adityamandre25 --output /tmp/koi-snapshot.json
+          cargo run --release -- render /tmp/koi-snapshot.json --output-dir "$GITHUB_WORKSPACE/koi" --body gold
+
       - name: Commit the koi if it changed
         shell: bash
         run: |
-          git add koi/koi.gif
+          git add koi/koi.gif koi/koi.png koi/koi.svg koi/preview.html
           if git diff --cached --quiet; then
             echo "The koi is unchanged; nothing to commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit --quiet --message "koi: draw the day's koi [skip ci]"
+          git commit --quiet --message "koi: draw the day's koi with custom engine [skip ci]"
           git push --quiet
