@@ -1,8 +1,8 @@
 """
-Generates rich assets/header.svg and assets/header.gif for ADITYA MANDRE
+Generates rich, silky-smooth assets/header.svg and assets/header.gif for ADITYA MANDRE
 """
 
-from generate_rich_header import build_rich_header_svg
+from generate_rich_header import build_silky_smooth_header_svg
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 def update_header_gif():
@@ -24,10 +24,10 @@ def update_header_gif():
     
     for f in range(total_frames):
         sec = f / float(fps)
-        if sec < 1.8:
-            char_count = int((sec / 1.8) * len(chars)) + 1
+        if sec < 2.0:
+            char_count = int((sec / 2.0) * len(chars)) + 1
             char_count = min(char_count, len(chars))
-        elif sec < 6.8:
+        elif sec < 6.5:
             char_count = len(chars)
         else:
             char_count = 0
@@ -48,7 +48,7 @@ def update_header_gif():
             draw.text((12 * scale, 12 * scale), current_text, font=font, fill=(56, 189, 248, 255), spacing=8)
             
             # Blinking cursor during typing and hold
-            if (int(sec * 3) % 2 == 0) and sec < 6.8:
+            if (int(sec * 3) % 2 == 0) and sec < 6.5:
                 bbox = draw.textbbox((12 * scale, 12 * scale), current_text, font=font, spacing=8)
                 cur_x = bbox[2] + 4 * scale
                 draw.rectangle([cur_x, 14 * scale, cur_x + 3 * scale, 48 * scale], fill=(96, 165, 250, 240))
@@ -75,6 +75,6 @@ def update_header_gif():
 
 if __name__ == "__main__":
     with open("assets/header.svg", "w", encoding="utf-8") as f:
-        f.write(build_rich_header_svg())
+        f.write(build_silky_smooth_header_svg())
     print("Updated assets/header.svg successfully!")
     update_header_gif()

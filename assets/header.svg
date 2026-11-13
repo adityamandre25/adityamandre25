@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 64" width="540" height="64" fill="none">
   <defs>
-    <!-- Multi-Stage Deep Electric Bloom -->
+    <!-- Deep Electric Sapphire Bloom Filter -->
     <filter id="rich-bloom" x="-20%" y="-30%" width="150%" height="170%">
       <feGaussianBlur stdDeviation="2.5" result="glow1" />
       <feGaussianBlur stdDeviation="5.5" result="glow2" />
-      <feGaussianBlur stdDeviation="11.0" result="glow3" />
+      <feGaussianBlur stdDeviation="10.0" result="glow3" />
       <feMerge>
         <feMergeNode in="glow3" />
         <feMergeNode in="glow2" />
@@ -13,8 +13,8 @@
       </feMerge>
     </filter>
 
-    <!-- Luxury Multi-Stop Sapphire, Electric Cyan & Specular Gradient -->
-    <linearGradient id="rich-sapphire-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <!-- 5-Stop Luxury Sapphire & Specular Gradient -->
+    <linearGradient id="sapphire-grad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#38BDF8" />
       <stop offset="25%" stop-color="#60A5FA" />
       <stop offset="50%" stop-color="#93C5FD" />
@@ -22,32 +22,20 @@
       <stop offset="100%" stop-color="#2563EB" />
     </linearGradient>
 
-    <!-- Deep Ambient Underglow Gradient -->
-    <linearGradient id="ambient-glow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <!-- Deep Ambient Blue Underglow -->
+    <linearGradient id="bloom-grad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#0284C7" />
       <stop offset="50%" stop-color="#2563EB" />
       <stop offset="100%" stop-color="#1D4ED8" />
     </linearGradient>
 
-    <!-- Reveal Clip Path -->
-    <clipPath id="reveal-clip">
+    <!-- Continuous Liquid Smooth Reveal Clip -->
+    <clipPath id="smooth-reveal">
       <rect x="0" y="0" height="64" width="0">
         <animate attributeName="width"
-                 calcMode="discrete"
-                 keyTimes="0.0;0.0185;0.0369;0.0554;0.0738;0.0923;0.1108;0.1292;0.1477;0.1662;0.1846;0.2031;0.2215;0.24;0.9067;0.9567;1.0"
-                 values="0;51.4;86.8;122.2;157.5;192.9;228.3;263.7;299.1;334.5;369.8;405.2;440.6;476.0;476.0;0;0"
-                 dur="7.5s"
-                 repeatCount="indefinite" />
-      </rect>
-    </clipPath>
-
-    <!-- Cursor Clip Path -->
-    <clipPath id="cursor-clip">
-      <rect x="0" y="8" height="42" width="4">
-        <animate attributeName="x"
-                 calcMode="discrete"
-                 keyTimes="0.0;0.0185;0.0369;0.0554;0.0738;0.0923;0.1108;0.1292;0.1477;0.1662;0.1846;0.2031;0.2215;0.24;0.9067;0.9567;1.0"
-                 values="0;51.4;86.8;122.2;157.5;192.9;228.3;263.7;299.1;334.5;369.8;405.2;440.6;476.0;476.0;0;0"
+                 calcMode="linear"
+                 keyTimes="0; 0.2667; 0.8667; 0.96; 1"
+                 values="0; 475; 475; 0; 0"
                  dur="7.5s"
                  repeatCount="indefinite" />
       </rect>
@@ -55,42 +43,55 @@
   </defs>
 
   <style>
-    .rich-text {
+    .rich-heading {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'SF Pro Display', Roboto, 'Montserrat', sans-serif;
       font-size: 34px;
       font-weight: 850;
       letter-spacing: 5.5px;
-      fill: url(#rich-sapphire-grad);
+      fill: url(#sapphire-grad);
     }
-    .glow-backdrop {
+    .glow-layer {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'SF Pro Display', Roboto, 'Montserrat', sans-serif;
       font-size: 34px;
       font-weight: 850;
       letter-spacing: 5.5px;
-      fill: url(#ambient-glow-grad);
+      fill: url(#bloom-grad);
       filter: url(#rich-bloom);
       opacity: 0.85;
     }
-    .cursor-bar {
+    .cursor-neon {
       fill: #38BDF8;
-      filter: drop-shadow(0 0 6px #38BDF8);
+      filter: drop-shadow(0 0 5px #38BDF8);
     }
   </style>
 
-  <!-- Group with letter-by-letter reveal -->
-  <g clip-path="url(#reveal-clip)">
-    <!-- Ambient Luminous Glow Layer -->
-    <text x="4" y="44" class="glow-backdrop" textLength="460" lengthAdjust="spacing">ADITYA MANDRE</text>
-    <!-- Crisp Foreground Vector Layer -->
-    <text x="4" y="44" class="rich-text" textLength="460" lengthAdjust="spacing">ADITYA MANDRE</text>
-  </g>
+  <!-- Animated Container with Smooth Opacity Cycle -->
+  <g>
+    <animate attributeName="opacity"
+             calcMode="linear"
+             keyTimes="0; 0.8667; 0.96; 1"
+             values="1; 1; 0; 1"
+             dur="7.5s"
+             repeatCount="indefinite" />
 
-  <!-- Sleek Typing Cursor -->
-  <g clip-path="url(#cursor-clip)">
-    <rect x="0" y="10" width="3.5" height="38" rx="1.5" class="cursor-bar">
-      <!-- Cursor blink animation -->
+    <!-- Text Layer with Continuous Width Reveal -->
+    <g clip-path="url(#smooth-reveal)">
+      <text x="4" y="44" class="glow-layer" textLength="460" lengthAdjust="spacing">ADITYA MANDRE</text>
+      <text x="4" y="44" class="rich-heading" textLength="460" lengthAdjust="spacing">ADITYA MANDRE</text>
+    </g>
+
+    <!-- Smoothly Gliding & Blinking Cursor -->
+    <rect y="10" width="3.5" height="38" rx="1.75" class="cursor-neon">
+      <!-- Glides from 4 to text_len + 12 then stays docked -->
+      <animate attributeName="x"
+               calcMode="linear"
+               keyTimes="0; 0.2667; 0.8667; 1"
+               values="4; 472; 472; 472"
+               dur="7.5s"
+               repeatCount="indefinite" />
+      <!-- Subtle blink -->
       <animate attributeName="opacity"
-               values="1; 1; 0; 0; 1"
+               values="1; 1; 0.2; 0.2; 1"
                keyTimes="0; 0.45; 0.50; 0.95; 1"
                dur="0.85s"
                repeatCount="indefinite" />
