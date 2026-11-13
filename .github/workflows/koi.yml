@@ -2,8 +2,8 @@ name: Koi
 
 on:
   schedule:
-  # Every Sunday at 00:20 UTC (5:50 AM IST)
-  - cron: "20 0 * * 0"
+    # Just after midnight UTC, so the koi shows the day that just ended.
+    - cron: "20 0 * * *"
   workflow_dispatch:
   push:
     branches:
@@ -20,31 +20,12 @@ jobs:
   koi:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout profile repository
-        uses: actions/checkout@v4
-
-      - name: Set up Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Cache cargo build
-        uses: Swatinem/rust-cache@v2
+      - uses: actions/checkout@v4
+      - uses: adityamandre25/koi@main
         with:
-          workspaces: koi-engine
-
-      - name: Checkout custom koi engine (adityamandre25/koi)
-        uses: actions/checkout@v4
-        with:
-          repository: adityamandre25/koi
-          path: koi-engine
-
-      - name: Collect snapshot and render custom koi
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          cd koi-engine
-          cargo run --release -- collect adityamandre25 --output /tmp/koi-snapshot.json
-          cargo run --release -- render /tmp/koi-snapshot.json --output-dir "$GITHUB_WORKSPACE/koi" --body gold
-
+          login: adityamandre25
+          body: gold
+          output-dir: koi
       - name: Commit the koi if it changed
         shell: bash
         run: |
@@ -55,5 +36,5 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit --quiet --message "koi: draw the day's koi with custom engine [skip ci]"
+          git commit --quiet --message "koi: draw the day's koi [skip ci]"
           git push --quiet
