@@ -1,58 +1,99 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 58" width="460" height="58" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 64" width="540" height="64" fill="none">
   <defs>
-    <!-- Vibrant Royal / Electric Blue Glow Filter -->
-    <filter id="electric-glow" x="-20%" y="-30%" width="150%" height="160%">
-      <feGaussianBlur stdDeviation="3" result="blur1" />
-      <feGaussianBlur stdDeviation="6" result="blur2" />
+    <!-- Multi-Stage Deep Electric Bloom -->
+    <filter id="rich-bloom" x="-20%" y="-30%" width="150%" height="170%">
+      <feGaussianBlur stdDeviation="2.5" result="glow1" />
+      <feGaussianBlur stdDeviation="5.5" result="glow2" />
+      <feGaussianBlur stdDeviation="11.0" result="glow3" />
       <feMerge>
-        <feMergeNode in="blur2" />
-        <feMergeNode in="blur1" />
+        <feMergeNode in="glow3" />
+        <feMergeNode in="glow2" />
+        <feMergeNode in="glow1" />
         <feMergeNode in="SourceGraphic" />
       </feMerge>
     </filter>
 
-    <!-- Clip Path revealing characters letter-by-letter -->
-    <clipPath id="type-clip">
-      <rect x="0" y="0" height="58" width="0">
+    <!-- Luxury Multi-Stop Sapphire, Electric Cyan & Specular Gradient -->
+    <linearGradient id="rich-sapphire-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="25%" stop-color="#60A5FA" />
+      <stop offset="50%" stop-color="#93C5FD" />
+      <stop offset="75%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+
+    <!-- Deep Ambient Underglow Gradient -->
+    <linearGradient id="ambient-glow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284C7" />
+      <stop offset="50%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+
+    <!-- Reveal Clip Path -->
+    <clipPath id="reveal-clip">
+      <rect x="0" y="0" height="64" width="0">
         <animate attributeName="width"
                  calcMode="discrete"
-                 keyTimes="0.0;0.025;0.049;0.074;0.098;0.123;0.148;0.172;0.197;0.222;0.246;0.271;0.295;0.32;0.88;0.96;1.0"
-                 values="0;48.1;81.2;114.2;147.3;180.4;213.5;246.5;279.6;312.7;345.8;378.8;411.9;445.0;445.0;0;0"
-                 dur="6s"
+                 keyTimes="0.0;0.0185;0.0369;0.0554;0.0738;0.0923;0.1108;0.1292;0.1477;0.1662;0.1846;0.2031;0.2215;0.24;0.9067;0.9567;1.0"
+                 values="0;51.4;86.8;122.2;157.5;192.9;228.3;263.7;299.1;334.5;369.8;405.2;440.6;476.0;476.0;0;0"
+                 dur="7.5s"
                  repeatCount="indefinite" />
       </rect>
     </clipPath>
 
-    <!-- Electric Cyan to Royal Blue Gradient -->
-    <linearGradient id="header-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#38BDF8" />
-      <stop offset="55%" stop-color="#60A5FA" />
-      <stop offset="100%" stop-color="#3B82F6" />
-    </linearGradient>
+    <!-- Cursor Clip Path -->
+    <clipPath id="cursor-clip">
+      <rect x="0" y="8" height="42" width="4">
+        <animate attributeName="x"
+                 calcMode="discrete"
+                 keyTimes="0.0;0.0185;0.0369;0.0554;0.0738;0.0923;0.1108;0.1292;0.1477;0.1662;0.1846;0.2031;0.2215;0.24;0.9067;0.9567;1.0"
+                 values="0;51.4;86.8;122.2;157.5;192.9;228.3;263.7;299.1;334.5;369.8;405.2;440.6;476.0;476.0;0;0"
+                 dur="7.5s"
+                 repeatCount="indefinite" />
+      </rect>
+    </clipPath>
   </defs>
 
   <style>
-    .header-text {
-      font-family: 'JetBrains Mono', 'Fira Code', 'Segoe UI', 'Consolas', monospace;
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: 4px;
-      fill: url(#header-grad);
+    .rich-text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'SF Pro Display', Roboto, 'Montserrat', sans-serif;
+      font-size: 34px;
+      font-weight: 850;
+      letter-spacing: 5.5px;
+      fill: url(#rich-sapphire-grad);
     }
-    .glow-layer {
-      font-family: 'JetBrains Mono', 'Fira Code', 'Segoe UI', 'Consolas', monospace;
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: 4px;
-      fill: #1D4ED8;
-      filter: url(#electric-glow);
-      opacity: 0.9;
+    .glow-backdrop {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'SF Pro Display', Roboto, 'Montserrat', sans-serif;
+      font-size: 34px;
+      font-weight: 850;
+      letter-spacing: 5.5px;
+      fill: url(#ambient-glow-grad);
+      filter: url(#rich-bloom);
+      opacity: 0.85;
+    }
+    .cursor-bar {
+      fill: #38BDF8;
+      filter: drop-shadow(0 0 6px #38BDF8);
     }
   </style>
 
-  <!-- Animated Heading -->
-  <g clip-path="url(#type-clip)">
-    <text x="2" y="42" class="glow-layer" textLength="430" lengthAdjust="spacing">ADITYA MANDRE</text>
-    <text x="2" y="42" class="header-text" textLength="430" lengthAdjust="spacing">ADITYA MANDRE</text>
+  <!-- Group with letter-by-letter reveal -->
+  <g clip-path="url(#reveal-clip)">
+    <!-- Ambient Luminous Glow Layer -->
+    <text x="4" y="44" class="glow-backdrop" textLength="460" lengthAdjust="spacing">ADITYA MANDRE</text>
+    <!-- Crisp Foreground Vector Layer -->
+    <text x="4" y="44" class="rich-text" textLength="460" lengthAdjust="spacing">ADITYA MANDRE</text>
+  </g>
+
+  <!-- Sleek Typing Cursor -->
+  <g clip-path="url(#cursor-clip)">
+    <rect x="0" y="10" width="3.5" height="38" rx="1.5" class="cursor-bar">
+      <!-- Cursor blink animation -->
+      <animate attributeName="opacity"
+               values="1; 1; 0; 0; 1"
+               keyTimes="0; 0.45; 0.50; 0.95; 1"
+               dur="0.85s"
+               repeatCount="indefinite" />
+    </rect>
   </g>
 </svg>
